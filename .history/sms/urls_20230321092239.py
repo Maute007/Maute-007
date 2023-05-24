@@ -1,0 +1,15 @@
+from django.contrib import admin
+from django.urls import path, include
+from App import views
+
+urlpatterns = [
+    # Admin
+    path('admin/', admin.site.urls),
+    # Frontend
+    path('', views.frontend, name="frontend"),
+    path('', views.frontend, name="offer"),
+    # Backend
+    path('backend/', views.backend, name="backend"),
+    # Login/Logout
+    path('login/', include('django.contrib.auth.urls')),
+]

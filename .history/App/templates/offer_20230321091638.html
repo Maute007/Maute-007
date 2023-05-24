@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+<!-- Block title -->
+{% block title %} Opportunity {% endblock %}
+<!-- navbar title -->
+{% block nav-content %}
+<i class="fa-solid fas fa-poll"></i>&nbsp;&nbsp;Job Opportunities
+{% endblock %}
+
+<!-- navbar link (button go back to Frontend) -->
+{% block link %}
+<a href={% url 'frontend' %} style="margin-right: 25px; font-size: 25px;" title="Go back">
+    <i class="fa fa-angle-double-left"></i>
+</a>
+{% endblock link %}
+

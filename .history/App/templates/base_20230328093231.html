@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link href={% static "img/favicon.ico" %} rel="shortcut icon">
+    <!-- Logo -->
+    <link href={% static "img/logo.ico" %} rel="shortcut icon">
+    <!-- Static CSS -->
+    <link href={% static "css/style.css" %} rel="stylesheet">
+    <title>{% block title %} Frontend {% endblock %}</title>
+</head>
+<body class="fundo">
+    <div class="wrapper">
+        <style>
+            body {
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url("/static/img/front.jpg");
+                background-position: center 0px;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            
+        </style>
+
+        <!-- Navbar -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <!-- FontAwesome + Title (Left side) -->
+                <!-- FontAwesome + Title (Left side) -->
+                <div class="col-sm">
+                    <a href="#" class="navbar-brand flex-grow-1 text-center text-light" style="margin-left: 25px;">
+                        {% block nav-content %}
+                        <i class="fa-solid fas fa-balance-scale"></i>&nbsp;&nbsp;RH Moz Opportunities <span class="text-success" id="nav"></span>
+                        {% endblock %}
+                    </a>
+                </div>
+                
+                <!--date and time (desktop mode)-->
+                <div class="text-light" id="clock" style="font-size: 12px; margin-right: 50%; margin-top: 5px;">{% now "D (d/m/y)" %} &nbsp;&nbsp;
+                    <span></span>
+                    <span style="color: lightgreen; font-weight: bold" id="clock"></span>
+                </div>
+
+                <!-- button go back to Frontend -->
+                {% block link %}
+                <a href= {% url 'frontend' %} style="margin-right: 25px; font-size: 25px" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <i class="text-danger fas fa-bars"></i>
+                </a>
+                {% endblock link %}
+            </nav>
+        </header>
+
+         <!-- Block Content (ROOT) -->
+         {% block content %} {% endblock content %}
+
+         <!--=========INCLUDES (MODALS)==========-->
+         <!--forms-->
+         {% include 'modals/forms/form_front.html' %}
+         {% include 'modals/forms/form_java.html' %}
+         {% include 'modals/forms/form_python.html' %}
+         {% include 'modals/forms/form_logis.html' %}
+         {% include 'modals/forms/form_count.html' %}
+         {% include 'modals/forms/form_manage.html' %}
+         <!--=========others===-->
+         
+
+    </div> <!-- End // wrapper -->
+
+    <!--Sidebar offcanvas-->
+            
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel" style="text-align: center;"> ACESSO RESTRICTO </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-grid gap-2">
+                {% block sidebar-links %}
+                
+                <a href= {% url 'login' %} class="btn btn-warning">Login</a>
+                <hr>
+                <a href= "#" class="btn btn-outline-dark">
+                    <i class="fas fa-headset"></i>&nbsp;&nbsp; Supporte
+                </a>
+                <hr><br>
+                <center>
+                    <i class="fas fa-key fa-7x" style="color: darkgrey;"></i>
+                    <br> <br> <h3>BEM VINDO</h3>
+             </center>
+                {% endblock sidebar-links %}
+            </div>
+        </div>
+        </div><!--END Sidebar offcanvas-->
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-lg-start text-light" id="footer">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            &copy; {% now "Y" %} Copyright:
+            <a class="text-light" href="#" style="text-decoration: none;">
+                <span {% block footer %} style="color: greenyellow;" {% endblock %}>www.your-website.com</span>
+            </a>
+        </div>
+    </footer>
+
+    <!--Message from backend-->
+    {% for message in messages %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--success-->
+    {% if message.tags == 'success' %}
+
+    <script>
+        var m = "{{message}}";
+        swal("Perfect !", m, "success")
+    </script>
+    <!--error-->
+    {% elif message.tags == 'error' %}
+
+    <script>
+        var m = "{{message}}";
+        swal("Sorry !", m, "error")
+    </script>
+    {% endif %}
+    {% endfor %}
+
+
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <!--typed effect-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js" integrity="sha512-hIlMpy2enepx9maXZF1gn0hsvPLerXoLHdb095CmRY5HG3bZfN7XPBZ14g+TUDH1aGgfLyPHmY9/zuU53smuMw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> <!--my local(static) script-->
+    <script src={% static "js/script.js" %}></script>
+    <!-- inputMask-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <!--sweetalert-->
+    
+
+    <!--typed effect control-->
+    <script>
+        const typed = new Typed('#Element',{
+            
+            strings: [
+            'Somos a HyperSet',
+            'Contratamos e Formamos',
+            'Oferecemos Oportunidades',
+            'Somos Inovadores'
+            ],
+            typeSpeed: 55,
+            backSpeed: 35,
+            loop: true,
+        });
+    </script>
+
+       <!--clear the form inside modal (when click outside or close)-->
+        <script>
+            $("#countModal, #javaModal, #pythonModal, #logisticsModal, #manageModal, #frontendModal").on('hidden.bs.modal', function(){
+                $('#countModal form')[0].reset();
+                $('#javaModal form')[0].reset();
+                $('#pythonModal form')[0].reset();
+                $('#logisticsModal form')[0].reset();
+                $('#manageModal form')[0].reset();
+                $('#frontendModal form')[0].reset();
+            })
+        </script>
+
+        <script>
+            // Configuração da máscara de entrada
+var telefoneMask = "+258 99 999 9999";
+
+// Aplica a máscara de entrada no campo de texto
+$('#telefone').inputmask(telefoneMask, { 
+  "clearIncomplete": true // Limpa o campo de entrada se a entrada estiver incompleta
+});
+        </script>
+
+</body>
+</html>

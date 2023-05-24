@@ -1,0 +1,47 @@
+
+{% extends 'modals/forms/base.html' %}
+<!--modal id-->
+{% block modal-id %} id="typedModal{{ data.pk }}" {% endblock modal-id %}
+
+<!--modal title-->
+{% block modal-title %}<i class="fas fa-keyboard"></i>&nbsp;&nbsp; Efeito de digitação </span>{% endblock modal-title %}
+
+<!--modal-form-->
+{% block form %}
+  </style>
+  <form method="POST" action="/editTyped" class="was-validated">
+    {% csrf_token %}
+    <div class="modal-body">
+      <!--ID hidden-->
+      <input type="hidden" name="id" value="{{ data.id }}" readonly>
+      
+      <!--inputs-->
+      <div class="input-group mb-3">
+        <span class="btn border-secondary bg-light txt-sm side-label"><i class="fas fa-thumb-tack"></i></span>
+        <input type="text" class="form-control txt-sm" name="fixo" value="{{ data.fixo }}" required> 
+      </div>
+      <div class="input-group mb-3">
+        <span class="btn border-secondary bg-light txt-sm side-label"><i class="fas fa-dot-circle"></i></span>
+        <input type="text" class="form-control txt-sm" name="txt01" value="{{ data.txt01 }}" required> 
+      </div>
+      <div class="input-group mb-3">
+        <span class="btn border-secondary bg-light txt-sm side-label"><i class="fas fa-dot-circle"></i></span>
+        <input type="text" class="form-control txt-sm" name="txt02" value="{{ data.txt02 }}" required> 
+      </div>
+      <div class="input-group mb-3">
+        <span class="btn border-secondary bg-light txt-sm side-label"><i class="fas fa-dot-circle"></i></span>
+        <input type="text" class="form-control txt-sm" name="txt03" value="{{ data.txt03 }}" required> 
+      </div>
+      <div class="input-group mb-3">
+        <span class="btn border-secondary bg-light txt-sm side-label"><i class="fas fa-dot-circle"></i></span>
+        <input type="text" class="form-control txt-sm" name="txt04" value="{{ data.txt04 }}" required> 
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" id="saved-typed" class="btn btn-outline-success btn-sm w-btn txt-sm">
+        <i class="fas fa-hdd"></i>&nbsp; Salvar 
+      </button>
+    </div>
+  </form>
+{% endblock form %}

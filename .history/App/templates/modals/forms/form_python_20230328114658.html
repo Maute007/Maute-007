@@ -1,0 +1,27 @@
+<!--data-bs-toggle="modal" data-bs-target="#exampleModal"-->
+{% extends 'modals/forms/base.html' %}
+<!--modal id-->
+{% block modal-id %} id="pythonModal" {% endblock modal-id %}
+
+<!--modal title-->
+{% block modal-title %} <i class="fab fa-python"></i> &nbsp;&nbsp; Oportunidade de Bolsa{% endblock modal-title %}
+
+<!--form action-->
+{% block action %}action="/ms"{% endblock action %}
+
+<!-- form validation-->
+{% block validation %} onsubmit="return validateForm7()"{% endblock validation %}
+
+{% block id-name %} id="name7" {% endblock id-name %}
+
+{% block id-age %} id="age7" {% endblock id-age %}
+
+{% block id-email %} id="email7" {% endblock id-email %}
+
+{% block id-phone %} id="phone7" {% endblock id-phone %}
+
+{% block id-address %} id="address7" {% endblock id-address %}
+
+{% block id-exp %} id="exp7" {% endblock id-exp %}
+{% block id-skills %} id="skills7" {% endblock id-skills %}
+{% block id-file %} id="file7" {% endblock id-file %}

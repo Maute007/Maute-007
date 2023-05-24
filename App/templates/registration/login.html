@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+<!--block title-->
+<title>{% block title %}login{% endblock %}</title>
+
+<!--logout-->
+{% block btn-nav %}
+<a href={% url 'index' %} id="btn-nav" class="btn btn-success" title="Voltar">
+    <i class="fas fa-arrow-circle-left"></i>
+</a>
+{% endblock btn-nav %}
+
+<!-- navbar icon -->
+{% block navbar-content %}
+<i class="fas fa-key text-success"></i>&nbsp;&nbsp; <span class="tex-sm2 text-success" style="color:yellowgreen;">Login</span>
+{% endblock navbar-content %}
+
+<!--================================================================
+    block footer
+=======================================================================-->
+{% block footer %}
+{% include 'modals/others/footer.html' %}
+{% endblock footer %}
+
+<!--block content (raiz)-->
+{% block content %}
+
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url("/static/img/02.jpg");
+            background-position: center 0px;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+                {% block bod %}{% endblock bod %}
+            }
+            
+        </style>
+        
+
+<div class="container mt-5" id="card-login">
+    <div class="card p-3 login-border">
+        <span class="text-center mt-3 txt-pulse txt-sm2"><strong>ACESSO RESTRITO</strong></span>
+        <form method="POST" autocomplete="off" class="txt-sm" novalidate>
+            <br><br>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-success btn-sm mt-4 w-100" type="submit" value="Entrar" id="btn-enter">
+        </form>
+        <center class="mt-4 mb-4 globe txt-sm">
+            <i class="fas fa-globe-americas fa-2x mt-4 mb-4"></i>
+        </center>
+    </div>
+</div><!--END // container-->
+<!--messagem de erro (login forms.py)-->
+{% if form.errors %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    swal("Negado !", "Dados Incorrectos.", "error" );
+</script>
+{% endif %}
+
+<br><hr><br><br>
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+    /* Estilos base para o botão */
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    /* Estilos para a animação de notificação */
+    .notification {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      font-size: 12px;
+      animation: heartbeat 1.5s ease-in-out infinite both;
+      transform-origin: center center;
+    }
+
+    /* Animação de heart-beat */
+    @keyframes heartbeat {
+      from {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      to {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Estilos responsivos */
+    @media screen and (max-width: 600px) {
+      .button {
+        font-size: 12px;
+      }
+      .notification {
+        font-size: 10px;
+        width: 15px;
+        height: 15px;
+        line-height: 15px;
+      }
+    }

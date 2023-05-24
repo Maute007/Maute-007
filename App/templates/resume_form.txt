@@ -1,0 +1,32 @@
+<body style="background-color: grey;">
+    <style>
+        @import href="https://fonts.googleapis.com/css?family=roboto"; 
+    </style>
+    <br>
+    
+    <center style="background-color:#fff">
+        <div style="background-color: #fff; width: 85%; height: 1200px; border-radius:5px; margin-top: 50px; font-family: roboto;">
+            <br>
+            <p style="color: blue; font-size: 22pt;"><strong> {{ name }} </strong></p>
+
+            <hr style="width: 80%;"><br>
+
+            <p style="font-size: 16pt; text-align: left; margin-left: 40px;"><strong>PERSONAL DATA: </strong></p>
+            <p style="font-size: 14pt; text-align: left; margin-left: 40px;"><strong>Age: </strong> {{ age }}</p>
+            <p style="font-size: 14pt; text-align: left; margin-left: 40px;"><strong>Phone: </strong> {{ phone }}</p>
+            <p style="font-size: 14pt; text-align: left; margin-left: 40px;"><strong>Email: </strong> {{ email }}</p>
+            <p style="font-size: 14pt; text-align: left; margin-left: 40px;"><strong>Address: </strong> {{ address }}</p>
+
+            <div style="text-align: left; margin-left: 40px; margin-right:35px;">
+                <br>
+                <p style="font-size: 18px;"><strong> EXPERIENCE </strong></P>
+                <textarea rows="15" style="width: 80%; border: none; overflow: hidden;"> {{ experience }}</textarea>
+                <br><br>
+                <p style="font-size: 18px;"><strong>SKILLS</strong></P>
+                <textarea rows="16" style="width: 80%; border: none; overflow: hidden;"> {{ skills }}</textarea>    
+            </div>
+                <br><br><br><br> <hr style="color: #d3d3d3; width: 80%">
+                {% now "d/m/y (H:i)" %}
+        </div>
+    </center> <br><br><br><br>
+</body>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<!-- Negar footer -->
+{% block footer %}{% endblock footer %}
+
+<!--=============NAVBAR==========-->
+{% block navbar-content %}
+<i class="fas fa-plus"></i>&nbsp;&nbsp; Adicionar Imagens
+
+{% endblock navbar-content %}
+
+<!--logout-->
+{% block btn-nav %}
+<a href={% url 'central' %} id="btn-nav" class="btn btn- secondary" style="color: red" title="Voltar">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+</a>
+{% endblock btn-nav %}
+
+{% block Content %}
+<!-- style-->
+<style>
+
+</style>
+{% endblock Content %}

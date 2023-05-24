@@ -1,0 +1,25 @@
+
+/*
+# btn in frontend (typed efect)
+*/
+.block-position{
+    width: 80%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/*
+# btn in frontend btn job
+*/
+#btn-job{
+    width: 300px;
+    font-size: 24px;
+    border-radius: 32px;
+    margin-bottom: -50px;
+}
+
+

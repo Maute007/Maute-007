@@ -1,0 +1,27 @@
+<!--data-bs-toggle="modal" data-bs-target="#exampleModal"-->
+{% extends 'modals/forms/base.html' %}
+<!--modal id-->
+{% block modal-id %} id="frontendModal" {% endblock modal-id %}
+
+<!--modal title-->
+
+{% block modal-title %}<i class="fab fa-react"></i> &nbsp;&nbsp; Front end Opportunities{% endblock modal-title %}
+
+<!--form action-->
+{% block action %}action="/email_front"{% endblock action %}
+<!-- form validation-->
+{% block validation %} onsubmit="return validateForm2()"{% endblock validation %}
+
+{% block id-name %} id="name2" {% endblock id-name %}
+
+{% block id-age %} id="age2" {% endblock id-age %}
+
+{% block id-email %} id="email2" {% endblock id-email %}
+
+{% block id-phone %} id="phone2" {% endblock id-phone %}
+
+{% block id-address %} id="address2" {% endblock id-address %}
+
+{% block id-exp %} id="exp2" {% endblock id-exp %}
+{% block id-skills %} id="skills2" {% endblock id-skills %}
+{% block id-file %} id="file2" {% endblock id-file %}

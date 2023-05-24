@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+<!--button login in navbar-->
+{% block nav-btn %}{% endblock nav-btn %}
+
+<!-- Page content -->
+{% block content %} 
+<div class="block-position">
+    <h1 class="text-light">Nós <span class="text-warning" id="Element"></span> </h1>
+<a href={% url "backend" %} id="btn-job" class="btn btn-outline-warning border-light mt-4 mt-sm-5">
+<i class="fas fa-chart-pie"></i>&nbsp;&nbsp;Novas Oportunidades
+</a>
+</div>
+<div>
+      <!-- Botão com animação de notificação -->
+  <button class="button">
+    <span class="notification">1</span>
+    Click me!
+  </button>
+</div>
+{% endblock content %}  

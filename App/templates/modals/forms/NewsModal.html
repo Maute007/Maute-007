@@ -1,0 +1,35 @@
+
+{% extends 'modals/forms/base.html' %}
+<!--modal id-->
+{% block modal-id %} id="RegistroModal" {% endblock modal-id %}
+
+<!--modal title-->
+{% block modal-title %}<i class="fas fa-users"></i>&nbsp;&nbsp; inscrições {{ total }} </span> {% endblock modal-title %}
+
+<!--Modal-body-->
+{% block modal-body %}
+<table class="table table-bordered table-sm">
+    <thead class="table-secondary">
+        <tr class="txt-sm2">
+            <th>Emails</th>
+            <th class="text-center">Data de cadastro</th>
+        </tr>
+    </thead>
+    {% for data in Registro %}
+    <tr class="tr-size txt-sm">
+        <td>{{ data.email }}</td>
+        <td class="text-center">{{ data.created | date:'d/m/Y (H:i)' }}</td>
+    </tr>
+     {% empty %}
+    <tr>
+        <td colspan="2" class="text-danger text-center">Sem inscritos</td>    
+    </tr>
+{% endfor %}
+
+</table>
+
+{% endblock modal-body %}
+
+<!--form action-->
+{% block btn-action %}<a href={% url "central" %} class="btn btn-outline-danger btn-sm txt-sm">
+    <i class="fas fa-power-off"></i> &nbsp; Sim</a>{% endblock btn-action %}

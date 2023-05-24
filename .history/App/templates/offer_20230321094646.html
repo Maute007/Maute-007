@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+<!-- Block title -->
+{% block title %} Opportunity {% endblock %}
+<!-- navbar title -->
+{% block nav-content %}
+<i class="fa-solid fas fa-poll"></i>&nbsp;&nbsp;Job Opportunities
+{% endblock %}
+
+<!-- navbar link (button go back to Frontend) -->
+{% block link %}
+<a href={% url 'frontend' %} style="margin-right: 25px; font-size: 25px;" title="Go back">
+    <i class="fa fa-angle-double-left"></i>
+</a>
+{% endblock link %}
+
+<!-- Page content -->
+{% block content %}
+<div class="container mt-4" style="width:80%;">
+    <div class="justify-content-center align-items-center row">
+        <h6 class="btn btn-warning"  style="width: 100%; cursor: default;"><strong>** AVAILABLE JOB OPPORTUNITIES **</strong></h6>
+        <div class="shadow-lg card p-3 mt-3" style="background-color:rgba(0, 0, 0, 0.5);">
+            <div class="row">
+                 <!--first button-->
+                 <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        <button class="btn btn-outline-warning btn-lg jobs" data-bs-toggle="modal" data-bs-target="#frontendModal">
+                            <i class="fab fa-react fa-5x"></i>
+                            <br><br> Estagio Para Ensino Medio
+                        </button>
+                    </div>
+                </div>
+                <!--second button-->
+                <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        <button class="btn btn-outline-warning btn-lg jobs" data-bs-toggle="modal" data-bs-target="#pythonModal">
+                            <i class="fab fa-python fa-5x"></i>
+                            <br><br> Estagio Para Ensino Superior
+                        </button>
+                    </div>
+                </div>
+                <!--third button-->
+                <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        <button class="btn btn-outline-warning btn-lg jobs" data-bs-toggle="modal" data-bs-target="#javaModal">
+                            <i class="fab fa-java fa-5x"></i>
+                            <br><br> Emprego Para Ensino Superior
+                        </button>
+                    </div>
+                </div>
+                <!--fourth button-->
+                <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        <button class="btn btn-outline-warning btn-lg jobs" data-bs-toggle="modal" data-bs-target="#manageModal">
+                            <i class="fas fa-bank fa-5x"></i>
+                            <br><br> Bank Manger
+                        </button>
+                    </div>
+                </div><!--end-->
+
+            </div>
+        </div>
+    </div>
+</div><!--end container-->
+{% endblock content %}

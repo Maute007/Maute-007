@@ -1,0 +1,27 @@
+{% extends 'modals/forms/base.html' %}
+<!--modal id-->
+{% block modal-id %} id="infoModal" {% endblock modal-id %}
+
+<!--modal title-->
+{% block modal-title %}
+    {% for data in home %}
+    <span class="txt-sm3"><i class="fas {{ data.icon_type }}"></i> &nbsp;&nbsp; {{ data.Modal_title }}</span>
+    {% endfor %}
+{% endblock modal-title %}
+
+<!--modal-body-->
+{% block modal-body %}
+    {% for data in home %}
+    <ul class="list-group text-center">
+        <li class="list-group-item {{ data.modal_card_color }} txt-sm">
+            <i class="fas {{ data.modal_card_icon }}"></i> &nbsp;&nbsp; {{ data.Modal_card_title}}
+        </li>
+        <hr>
+        <li class="list-group-item txt-sm">{{ data.cargo01 }}</li>
+        <li class="list-group-item txt-sm">{{ data.cargo02 }}</li>
+        <li class="list-group-item txt-sm">{{ data.cargo03 }}</li>
+        <li class="list-group-item txt-sm">{{ data.cargo04 }}</li>
+        <li class="list-group-item txt-sm">{{ data.cargo05 }}</li>
+    </ul>
+    {% endfor %}
+{% endblock modal-body %}
