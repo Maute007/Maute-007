@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Send, Timer, Tiped, Music, Home
+from .models import Send, Timer, Tiped, Music, Home, Padrao, Images
 
 #send email
 class SendAdmin(admin.ModelAdmin):
@@ -32,6 +32,22 @@ class MusicAdmin(admin.ModelAdmin):
     def has_add_permission(self, *args, **kwargs):
         return not Music.objects.exists()
 admin.site.register(Music, MusicAdmin) 
+
+# Padrao imagem
+class PadraoAdmin(admin.ModelAdmin):
+    list_display = ['titulo', ] 
+    #nao permitir mais de um id
+    def has_add_permission(self, *args, **kwargs):
+        return not Padrao.objects.exists()
+admin.site.register(Padrao, PadraoAdmin) 
+
+# images (slides)
+class ImagesAdmin(admin.ModelAdmin):
+    list_display = ['titulo', ] 
+    #nao permitir mais de um id
+    def has_add_permission(self, *args, **kwargs):
+        return not Images.objects.exists()
+admin.site.register(Images, ImagesAdmin) 
 
 #Homepage
 class HomeAdmin(admin.ModelAdmin):

@@ -20,6 +20,50 @@
 {% block Content %}
 <!-- style-->
 <style>
-
+/* Scroll vertical */
+body {
+    overflow-y: visible;
+}
 </style>
+<div class="container w-card-images">
+
+<!--Imagens (negar edicao) aqui-->
+{% block render %}{% endblock render %}
+
+<form method="POST" novalidate enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card p-3 border-dark mt-3 mb-3">
+        <!-- block que sera extendido para pegar id-->
+        {% block Id %}{% endblock Id %}
+        <!--Title-->
+        {% block img-titulo %}
+            {{ form.id|as_crispy_field }}
+        {% endblock img-titulo %}
+        <!-- imagem padrao (tecnica para custumizar o input) -->
+        {% block img_padrao %}{% endblock img_padrao %}
+        <!--slide imagem -->
+        <div class="mb-3 btn btn-secondary p-1 c-default">SLIDE DE IMAGENS</div>
+        <div class="row gx-1">
+            <div class"col-6">{{ form.img01|as_crispy_field }}</div>
+            <div class"col-6">{{ form.img02|as_crispy_field }}</div>
+        </div>
+        
+        <div class="row gx-1 img-mt">
+            <div class"col-6">{{ form.img03|as_crispy_field }}</div>
+            <div class"col-6">{{ form.img4|as_crispy_field }}</div>
+        </div>
+        
+        <div class="row gx-1 img-mt">
+            <div class"col-6">{{ form.img05|as_crispy_field }}</div>
+            <div class"col-6">{{ form.img06|as_crispy_field }}</div>
+        </div>
+        <hr class="mt-1">
+        
+        <button type="submit" {% block js %}{% endblock js %} class="btn btn-success mt-1 mb-1 txt-sm w-btn-img">
+            <i class="fas fa-hdd"></i>&nbsp;&nbsp; Salvar*
+        </button>
+        
+    </div>
+</form>
+
 {% endblock Content %}

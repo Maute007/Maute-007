@@ -47,7 +47,7 @@ class Music(models.Model):
 
 #Slide de imagens
 class Images(models.Model):
-    title = models.CharField(max_length=50)
+    titulo = models.CharField(max_length=50)
     img_01 = models.CharField(max_length=50, blank=True)
     img_02 = models.CharField(max_length=50, blank=True)
     img_03 = models.CharField(max_length=50, blank=True)
@@ -61,8 +61,8 @@ class Images(models.Model):
     
 # Imagem Padrao no Slide
 class Padrao(models.Model):
-    title = models.CharField(max_length=50)
-    img_padra = models.CharField(max_length=50, blank=True)
+    titulo = models.CharField(max_length=50)
+    img_padrao = models.CharField(max_length=50, blank=True)
    
     def __str__(self):
         return self.title

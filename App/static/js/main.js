@@ -29,4 +29,19 @@ $(".btn-add").bind("click", validateForm);
 // habilitar os butoes do popup 
 //(somente quando tiver feito uma alteracao)
 
+document.addEventListener('DOMContentLoaded', function () {
+    var forms = document.querySelectorAll('form');
+
+    forms.forEach(function (form) {
+        var inputs = form.querySelectorAll('input');
+        var saveButton = form.querySelector('button[type="submit"]');
+        saveButton.disabled = true;
+
+        inputs.forEach(function (input) {
+            input.addEventListener('change', function () {
+                saveButton.disabled = false;
+            });
+        });
+    });
+});
 
