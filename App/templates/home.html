@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}   
+
+<div class="card text-center">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body bg-secondary">
+      <h5 class="card-title text-light">Bem vindo ao noticiario MOZ@CNN</h5>
+      <p class="card-text">esse e' o site informativo que lida com todo tipo de novidades.</p>
+      <a href={% url 'novas' %} class="btn btn-primary">Ver todas as categorias</a>
+    </div>
+    <div class="card-footer text-muted">
+      <i>Carlos Maute</i>
+    </div>
+  </div>
+
+<div class="container mt-xl-5 mt-sm-4 mt-4">
+    <div class="row">
+        <section class="col-8" id="section">
+            {% if noticias_destaque %}
+                {% for noticia in noticias_destaque|slice:":2" %}
+                    <div class="card mt-4" style="width: 800px">
+                        <img class="card-img-top" src="{{ noticia.img.url }}" alt="{{ noticia.titulo }}">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ noticia.titulo }}</h4>
+                            <h6><p class="card-text">{{ noticia.detalhes }}</p></h6>
+                            <p><i class="text-success">Notícia publicada em {{ noticia.data }}</i></p>
+                            <a href="/detalhes/{{ noticia.id }}" class="btn btn-primary">Ver mais</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="card mt-4" style="width: 800px">
+                        <div class="card-body">
+                            <h4 class="card-title">Ainda não existem posts</h4>
+                            <p class="card-text">Verifique novamente mais tarde.</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="card mt-4" style="width: 800px">
+                    <div class="card-body">
+                        <h4 class="card-title">Ainda não existem posts</h4>
+                        <p class="card-text">Verifique novamente mais tarde.</p>
+                    </div>
+                </div>
+            {% endif %}
+        </section>
+
+        <aside class="col-4">
+            {% if noticias_destaque %}
+                {% for noticia in noticias_destaque|slice:"2:4" %}
+                    <div class="card mt-4 {% if forloop.counter == 2 %}mt-5{% endif %}" style="width: 600px">
+                        <img class="card-img-top" src="{{ noticia.img.url }}" alt="{{ noticia.titulo }}">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ noticia.titulo }}</h4>
+                            <p class="card-text">{{ noticia.detalhes }}</p>
+                            <p><i class="text-success">Notícia publicada em {{ noticia.data }}</i></p>
+                            <p><a href="Category/{{ noticia.category.id }}"> {{ noticia.category }} </a></p> <!-- Adicione essa linha -->
+                            <a href="/detalhes/{{ noticia.id }}" class="btn btn-primary">Ver mais</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="card mt-4" style="width: 600px">
+                        <div class="card-body">
+                            <h4 class="card-title">Ainda não existem posts</h4>
+                            <p class="card-text">Verifique novamente mais tarde.</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="card mt-4" style="width: 600px">
+                    <div class="card-body">
+                        <h4 class="card-title">Ainda não existem posts</h4>
+                        <p class="card-text">Verifique novamente mais tarde.</p>
+                    </div>
+                </div>
+            {% endif %}
+        </aside>
+                
+    </div>
+</div>
+
+<!-- Div para o segundo post -->
+{% if noticias_destaque|length > 4 %}
+    {% if noticias_destaque.4 %}
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card" style="width: 800px">
+                        <img class="card-img-top" src="{{ noticias_destaque.4.img.url }}" alt="{{ noticias_destaque.4.titulo }}">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ noticias_destaque.4.titulo }}</h4>
+                            <h6><p class="card-text">{{ noticias_destaque.4.detalhes }}</p></h6>
+                            <p><i class="text-success">Notícia publicada em {{ noticias_destaque.4.data }}</i></p>
+                            <a href="/detalhes/{{ noticias_destaque.4.id }}" class="btn btn-primary">Ver mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card" style="width: 800px">
+                        <div class="card-body">
+                            <h4 class="card-title">Ainda não existem posts</h4>
+                            <p class="card-text">Verifique novamente mais tarde.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class=" btn-light text-center text-primary mt-4" style="width: 100%; position: center; text-align: center;">
+    <h1 class="text-center">Categorias</h1>
+</div>
+
+<!-- Categorias -->
+<!-- Categorias -->
+{% if categorias_destaque %}
+    <div class="container mt-5">
+        <div class="row">
+            {% for categoria in categorias_destaque|slice:":3" %}
+                <div class="col-4">
+                    <div class="card mt-4" style="width:400px">
+                        <img class="card-img-top" src="{{ categoria.img.url }}" alt="{{ categoria.titulo }}" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ categoria.titulo }}</h4>
+                            <p class="card-text">{{ categoria.descricao }}</p>
+                            <a href="#" class="btn btn-primary">Ver mais</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% else %}
+    <div class="card mt-4" style="width: 600px;">
+        <div class="card-body">
+            <h4 class="card-title text-danger">Ainda não existem categorias</h4>
+            <p class="card-text">Verifique novamente mais tarde.</p>
+        </div>
+    </div>
+{% endif %}
+
+</div>
+</div>
+
+{% endblock content %}

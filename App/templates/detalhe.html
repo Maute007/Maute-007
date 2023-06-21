@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %}Novas{% endblock title %}</title>
+
+{% block nav-btn %}
+<a href={% url 'home' %} class="text-light nav-link d-inline-block">Recentes</a>
+<a href={% url 'novas' %} class="text-light nav-link d-inline-block">Categorias</a>
+{% endblock %}
+
+{% block content %}
+<div class="card mb-3 mt-5 mx-auto" style="width: 99%;">
+    <img src="{{ noticia.img.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ noticia.titulo }}</h5>
+      <p class="card-text">{{ noticia.detalhes }}</p>
+      <p class="card-text"><small class="text-muted">{{noticia.data}}</small></p>
+      <p><a href="Category/{{ noticia.Category.id }}"> {{ noticia.Category }} </a></p>
+    </div>
+  </div>
+  
+
+  <section class="col-md-8mx-auto">
+    <div class="container mt-4">
+      <div class="row justify-content-start">
+        <div class="col-md-6 border" style="padding: 20px;">
+            <form action="/MSG/" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        <input type="tel" class="form-control" id="telefone" placeholder="Telefone" name="telefone">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-comment"></i></span>
+                        <textarea class="form-control" id="comentario" rows="4" placeholder="Comentário" name="comentario"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-add txt-sm btn-success"><i class="fas fa-paper-plane"></i>
+                    &nbsp;&nbsp;Enviar</button>
+            </form>
+            
+        </div>
+        {% for data in related %}
+    <div class="col-md-6">
+        <div class="card" style="width: 500px;">
+            <div class="card-body">
+                <h5 class="card-title">{{ data.titulo }}</h5>
+                <p class="card-text">{{ data.detalhes }}</p>
+                <p class="card-text"><small class="text-muted">{{data.data}}</small></p>
+            </div>
+            <img src="{{ data.img.url }}" class="card-img-bottom" alt="...">
+        </div>
+    </div>
+{% endfor %}
+
+      </div>
+    </div>
+  </section>
+  
+
+{% endblock content %}

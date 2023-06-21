@@ -1,0 +1,17 @@
+{% extends 'modals/forms/base.html' %}
+<!--modal id-->
+{% block modal-id %} id="logoutModal" {% endblock modal-id %}
+
+<!--modal title-->
+{% block modal-title %}<i class="fas fa-power-off"></i>&nbsp;&nbsp; Sair do sistema </span>{% endblock modal-title %}
+
+<!--modal-body-->
+{% block modal-body %}
+<div class="text-danger text-center txt-sm"><i class="fas fa-power-off fa-3x"></i></div>
+<div class="text-danger text-center mb-3 mt-4 txt-sm"> CERTEZA QUE DESEJA SAIR?</div>
+{% endblock modal-body %}
+
+<!--form action-->
+{% block btn-action %}<a href={% url "logout" %} class="btn btn-outline-danger btn-sm txt-sm"><i class="fas fa-power-off"></i> 
+    &nbsp; Sim</a>{% endblock btn-action %}
+
