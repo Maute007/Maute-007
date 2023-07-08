@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block nav-links %}{% endblock nav-links %}
+
+<!-- Conteudo -->
+{% block content %} 
+
+<div class="container time_over mt-5 p-2 w-80">
+    <div class="justify-content-center align-items-center row">
+        <div class="shadow-lg card p-3 mt-3" style="background-color:rgba(0, 0, 0, 0.5);">
+            <div class="row mt-4 gx-2">
+                 <!--first button-->
+                 <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        <button class="btn btn-outline-secondary btn-lg jobs">
+                            <span class="f-size1" id="d" style="color: white;"></span><br>
+                            <span class="f-size2" style="color: white;">****</span>
+                        </button>
+                    </div>
+                </div>
+                <!--second button-->
+                <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        <button class="btn btn-outline-secondary btn-lg jobs">
+                            <span class="f-size1" id="h" style="color: white;"></span><br>
+                            <span class="f-size2" style="color: white;">*****</span>
+                        </button>
+                    </div>
+                </div>
+                <!--third button-->
+                <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        <button class="btn btn-outline-secondary btn-lg jobs">
+                            <span class="f-size1" id="m" style="color: white;"></span><br>
+                            <span class="f-size2" style="color: white;">****</span>
+                        </button>
+                    </div>
+                </div>
+                <!--fourth button-->
+                <div class="col-xl-3 col-sm-6 p-1">
+                    <div class="card" style="background-color: transparent;">
+                        <button class="btn btn-outline-secondary btn-lg jobs">
+                            <span class="f-size1" id="s" style="color: red;"></span><br>
+                            <span class="f-size2" style="color: white;">*****</span>
+                        </button>
+                    </div>
+                </div><!--end-->
+
+            </div>
+        </div>
+
+
+{% endblock content %}

@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block nav-links %}
+<li class="nav-item">
+    <a class="nav-link text-warning" href="{% url 'add_product' %}"><i class="fa fa-adn"></i> Add_Produto</a>
+  </li>
+{% endblock nav-links %}
+
+{% block content %}
+           <!--username-->
+<div style="margin-top: 2px">
+    <table class="table table-sm">
+        <thead class="table-secondary">
+            <tr>
+                <th style="width: 98%; text-align: center">***  <i class="fas fa-user-plus"></i> <stong class="text-dark ">User:</strong>
+                     <span class="text-danger ">{{user.get_username}}</span> ***<th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<h2 style="text-align: center;">CONTROL DE PRODUTOS</h2>
+<!--==========-->
+<div class="container text-center w-size timer_over mt-2 mb-2">
+    <div class="row mt-4 gx-2">
+        <!--Dias-->
+        <div class="col-xl-3 col-sm-3 col-3 p-1">
+            <div class="card border-0">
+                <button class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <span class="f-size1" id="d">Total Produto</span><br>
+                    <span class="f-size2">{{ total_products }}</span>
+                </button>
+            </div>
+        </div>
+
+        <!--modal-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Total de Produtos Registados</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!--script com dados de produtos-->
+        <div id="product-list-container"></div>
+        <table>
+    <thead>
+        <tr style="text-align: center;">
+            <th><strong>Codigo</strong></th>
+            <th><strong>Nome</strong></th>
+            <th><strong>Produto</strong></th>
+            <!-- Adicione mais colunas para exibir outros atributos do produto -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.nome }}</td>
+            <td>{{ product.produto }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-success">Imprimir</button>
+      </div>
+    </div>
+  </div>
+</div>
+        <!--END Modal-->
+
+        <!--horas-->
+        <div class="col-xl-3 col-sm-3 col-3 p-1">
+            <div class="card border-0">
+                <button class="btn btn-warning btn-lg">
+                    <span class="f-size1" id="h">Produto Em divida</span><br>
+                    <span class="f-size2">0</span>
+                </button>
+            </div>
+        </div>
+        <!--minutos-->
+        <div class="col-xl-3 col-sm-3 col-3 p-1">
+            <div class="card border-0">
+                <button class="btn btn-success btn-lg">
+                    <span class="f-size1" id="m">Produto Pago</span><br>
+                    <span class="f-size2">1</span>
+                </button>
+            </div>
+        </div>
+        <!--segundos-->
+        <div class="col-xl-3 col-sm-3 col-3 p-1">
+            <div class="card border-0">
+                <button class="btn btn-danger btn-lg">
+                    <span class="f-size1 fa-beat-fade" id="s">Total Vendido</span><br>
+                    <span class="f-size2">7</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div> <!--END //container-->
+
+
+<div class="container-fluid mt-3" style="width:90%">
+    <!--global search-->
+    <form>
+        <div class="input-group input-group-sm mb-3">
+            <input name="#" type="text" class="form-control input-sm" placeholder="Search" value="#">
+            <button class="btn btn-secondary" title="Search"><i class="fas fa-search"></i></button>
+            <!--Refresh button-->
+            <a href={% url "index" %} class="btn btn-dark" style="margin-left: 3px" title="Refresh"><i class="fas fa-sync"></i></a>
+        </div>
+    </form>
+
+    <!--table of messages-->
+    <div class="col-lg-12">
+    <div style="margin-top: 5px">
+        <table class="table table-sm text-center" style="width: 100%;">
+            <thead class="table-success">
+                <tr>
+                    <th style="width: 6%">ID</th>
+                    <th style="width: 15%">Cliente</th>
+                    <th style="width: 17%">Telefone</th>
+                    <th style="width: 10%">Vendido</th>
+                    <th style="width: 14%">Descrição</th>
+                    <th style="width: 13%">Valor</th>
+                    <th style="width: 8%">Data Reg.</th>
+                    <th style="width: 9%">Situação</th>
+                    <th style="width: 8%; text-align: center;" colspan="2">Ação</th>
+                </tr>
+            </thead>
+            <!-- Data from backend -->
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td><strong>{{ product.id }}</strong></td>
+                    <td>{{ product.nome }}</td>
+                    <td>{{ product.telefone }}</td>
+                    <td>{{ product.vendas }}</td>
+                    <td>{{ product.produto }}</td>
+                    <td>{{ product.compras }}</td>
+                    <td>{{ product.Data_Criacao|date:"d/m/y" }}</td>
+                    <td class="text-primary"><strong>{{ product.situacao }}</strong></td>
+                    <td>
+                        <form method="POST" action="{% url 'delete_product' product.id %}">
+                            {% csrf_token %}
+                            <button class="btn btn-danger btn-sm btn-Action" title="Delete Product">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{% url 'view_product' product.id %}" class="btn text-success btn-sm btn-action" style="background-color: #2e856e;" title="Edit Product">
+                            <i class="fas fa-edit text-light"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</div><!-- ==== End === //  container-->
+
+    
+    
+    {% endblock content %}
+    
