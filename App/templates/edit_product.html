@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block nav-links %}
+<li class="nav-item">
+    <a class="nav-link text-warning" href="{% url 'index' %}"><i class="fa fa-home"></i> home</a>
+  </li>
+{% endblock nav-links %}
+
+<!-- Page Conteudo -->
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-body mt-5 {% block cor %} border-dark text-light bg-secondary {% endblock  %}">
+                <span class="text-center">{% block card-title %}<strong> Editar Produto </strong> {% endblock card-title %}</span>
+            </div>
+
+            <!--form-->
+            <form {% block action %}action="/edit_product" {% endblock action %} method="POST" enctype="multipart/form-data" autocomplete="off" class="card p-3 border-dark mt-3">
+                {% csrf_token %}
+
+                <!--block ID (negado)-->
+                {% block value_id %}
+                    <input type="hidden" name="id" value="{{ product.id }}">
+                {% endblock value_id %}
+
+                <div class="input-group mb-3">
+                    <span class="side-label btn btn-secondary"><i class="fas fa-tshirt"></i></span>&nbsp;
+                    <select class="form-control text-danger" name="produto" required>
+                        <option value=""><strong>Clique para selecionar uma descrição do produto </strong></option>
+                        <option value="masculino" {% if product.produto == 'masculino' %} selected {% endif %}><strong>Camiseta/ Camisa/ Blusas</strong></option>
+                        <option value="feminino" {% if product.produto == 'feminino' %} selected {% endif %}><strong>Calças/ Calcoes</strong></option>
+                        <option value="unissex" {% if product.produto == 'unissex' %} selected {% endif %}><strong>Saia/ Vestido</strong></option>
+                        <option value="unissex" {% if product.produto == 'unissex' %} selected {% endif %}><strong>Casaco/ Camisola</strong></option>
+                        <option value="feminino" {% if product.produto == 'feminino' %} selected {% endif %}><strong>Roupas íntimas:</strong>  sutiãs, calcinhas, cuecas, meias, ...</option>
+                        <option value="unissex" {% if product.produto == 'unissex' %} selected {% endif %}><strong>Acessórios:</strong> (cintos, lenços, gravatas, bonés, chapéus...) </option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="side-label btn btn-secondary "><i class="fas fa-tshirt"></i></span>&nbsp;
+                    <input type="text" class="form-control" name="nome" maxlength="70" placeholder="Nome do cliente" required value="{{ product.nome }}">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="side-label btn btn-secondary"><i class="fas fa-tshirt"></i></span>&nbsp;
+                    <input type="text" class="form-control" name="telefone" maxlength="50" placeholder="Numero do telefone" required value="{{ product.telefone }}">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="side-label btn btn-secondary "><i class="fas fa-tshirt"></i></span>&nbsp;
+                    <select class="form-control" name="status" required>
+                        <option value=""><strong>Clique para selecionar um status</strong></option>
+                        <option value="compra" {% if product.status == 'compra' %} selected {% endif %}>compra</option>
+                        <option value="corecao" {% if product.status == 'corecao' %} selected {% endif %}>coreção: (costurar)</option>
+                        <option value="outros" {% if product.status == 'outros' %} selected {% endif %}>outros</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="side-label btn btn-secondary"><i class="fas fa-tshirt"></i></span>&nbsp;
+                    <input type="number" class="form-control" name="quantidade" maxlength="50" placeholder="quantidade de produto" required value="{{ product.quantidade }}">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="side-label btn btn-secondary"><i class="fas fa-tshirt"></i></span>&nbsp;
+                    <select class="form-control" name="genero" required>
+                        <option value=""><strong>Clique para selecionar o gênero do produto</strong></option>
+                        <option value="masculino" {% if product.genero == 'masculino' %} selected {% endif %}>Masculino</option>
+                        <option value="feminino" {% if product.genero == 'feminino' %} selected {% endif %}>Feminino</option>
+                        <option value="unissex" {% if product.genero == 'unissex' %} selected {% endif %}>Unissex</option>
+                    </select>
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="side-label btn btn-secondary"><i class="fas fa-tshirt"></i></span>&nbsp;
+                    <textarea class="form-control" name="contexto" maxlength="300" placeholder="(Opcional) Notas" required>{{ product.contexto }}</textarea>
+                </div>
+
+               <div class="mt-4" style="width: 100%">
+                <button type="submit" class="btn btn-success mb-3">
+                    {% block btn-action %}<i class="fas fa-pencil-alt"></i>&nbsp;&nbsp; Editar {% endblock btn-action %}
+                </button>
+                <a href="{% url 'index' %}" class="btn btn-warning mb-3 ms-2" style="width: 50px;" title="ver Produtos">
+                    <i class="fas fa-list"></i>
+                </a>
+                <button type="reset" class="btn btn-danger mb-3 ms-2" style="width: 50px;" title="Resetar">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+               </div> 
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
